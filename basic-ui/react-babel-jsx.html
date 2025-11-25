@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>React JSX Babel</title>
+    <link rel="stylesheet" href="./css/index.css" />
+  </head>
+  <body>
+    <!-- React only manages what's inside the element we pass to createRoot() | everything else on the page remains unchanged -->
+    <h1>I am a super header</h1>
+    <div id="root">
+      <!-- children inside root get completely replaced -->
+      <h2>Hello, I am child of Root</h2>
+    </div>
+    <h1>I am a super footer</h1>
+
+    <!-- CDN (content delivery network) -->
+    <script src="./react-lib/react.development.js"></script>
+    <script src="./react-lib/react-dom.development.js"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+    <script type="text/babel">
+      const nestedElement = (
+        <div id="root">
+          <div id="parent">
+            <div id="child1">
+              <h1 style={{ color: "blue" }}>Hi, I'm Bob the Builder!</h1>
+              <h2>I can fix it!</h2>
+            </div>
+            <div id="child2">
+              <h1 style={{ color: "orange" }}>Hi, I'm Dora the Explorer!</h1>
+              <h2>Let's go exploring!</h2>
+            </div>
+          </div>
+        </div>
+      );
+
+      const root = ReactDOM.createRoot(document.getElementById("root"));
+      root.render(nestedElement);
+    </script>
+  </body>
+</html>
