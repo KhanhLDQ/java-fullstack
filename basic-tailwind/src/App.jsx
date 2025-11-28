@@ -84,7 +84,7 @@ function App() {
         </button>
       </div> */}
 
-      <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      {/* <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         <div className="bg-blue-200 p-2">1</div>
         <div className="bg-blue-200 p-2">2</div>
         <div className="bg-blue-200 p-2">3</div>
@@ -96,7 +96,11 @@ function App() {
       </p>
       <p className="text-red-600 sm:text-blue-600 md:text-emerald-600 lg:text-yellow-500 xl:text-purple-600 m-4">
         Resize the screen to see changes!
-      </p>
+      </p> */}
+
+      <div className="bg-[#ff5733] h-[200px] w-[500px] border border-green-600 p-2 rounded-lg m-2 flex items-center justify-center">
+        Custom Width, Height, and Color!!
+      </div>
     </>
   );
 }
