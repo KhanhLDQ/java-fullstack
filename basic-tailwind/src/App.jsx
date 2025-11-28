@@ -98,8 +98,12 @@ function App() {
         Resize the screen to see changes!
       </p> */}
 
-      <div className="bg-[#ff5733] h-[200px] w-[500px] border border-green-600 p-2 rounded-lg m-2 flex items-center justify-center">
+      {/* <div className="bg-[#ff5733] h-[200px] w-[500px] border border-green-600 p-2 rounded-lg m-2 flex items-center justify-center">
         Custom Width, Height, and Color!!
+      </div> */}
+
+      <div className="bg-khanh-le-0209 text-may-phan-1610 font-tom-display h-[200px] w-[500px] border border-green-600 p-2 rounded-lg m-2 flex items-center justify-center">
+        Theme Variables!!
       </div>
     </>
   );

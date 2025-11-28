@@ -1,1 +1,7 @@
 @import "tailwindcss";
+
+@theme {
+  --color-khanh-le-0209: oklch(0.72 0.11 178);
+  --color-may-phan-1610: white;
+  --font-tom-display: "Poppins", sans-serif;
+}
