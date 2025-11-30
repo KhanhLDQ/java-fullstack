@@ -1,0 +1,19 @@
+services:
+  db:
+    image: "mysql:8.0"
+    container_name: "java-fullstack-database"
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: fullstack-db
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: tom
+      MYSQL_PASSWORD: 123456
+    healthcheck:
+      test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 30s
+    volumes:
+      - ./data/mysql:/var/lib/mysql

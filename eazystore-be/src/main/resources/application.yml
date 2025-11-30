@@ -1,3 +1,37 @@
 spring:
   application:
     name: eazystore-be
+  datasource:
+    url: jdbc:mysql://localhost:3306/fullstack-db
+    username: tom
+    password: 123456
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: validate #control how Hibernate manages db schema at startup - only check that the schema matches entities
+    properties:
+      hibernate:
+        format_sql: true
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+    validate-on-migrate: true #validate checksum of applied migrations - fails if files were changed after being applied
+  docker:
+    compose:
+      enabled: true
+      file: docker-compose.yml
+      stop:
+        command: stop
+      start:
+        command: up
+  main:
+    banner-mode: off
+
+
+logging:
+  pattern:
+    console: "%green(%d{yyyy-MM-dd HH:mm:ss.SSS}) %blue(%-5level) %magenta(${PID:- }) --- %red([%15.15thread]) %yellow(%-40.40logger{39}): %msg%n%wEx"
+  level:
+    org.tommap.eazystorebe: debug
+    org.hibernate.orm.jdbc.bind: trace
