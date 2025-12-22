@@ -6,7 +6,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -37,13 +36,4 @@ public class Product extends BaseAudit{
 
     @Column(length = 500)
     private String imageUrl;
-
-    @Builder
-    public Product(String name, String description, BigDecimal price, Integer popularity, String imageUrl) {
-        this.name = name;
-        this.description = description;
-        this.price = price;
-        this.popularity = popularity;
-        this.imageUrl = imageUrl;
-    }
 }
