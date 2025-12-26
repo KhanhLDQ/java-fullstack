@@ -25,7 +25,9 @@ public class ContactServiceImplTest {
     ContactMapper contactMapper;
 
     @InjectMocks
-    ContactServiceImpl contactService; //require implementation class instead of interface
+    //require implementation class instead of interface
+    //Mockito will do this automatically: contactService = new ContactServiceImpl(contactRepository, contactMapper)
+    ContactServiceImpl contactService;
 
     @Test
     void testSave_WhenThrowsException_ShouldReturnFalse() {

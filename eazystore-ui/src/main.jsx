@@ -14,15 +14,25 @@ import Login from "./components/Login.jsx";
 import Cart from "./components/Cart.jsx";
 import Home from "./components/Home.jsx";
 import ErrorPage from "./components/ErrorPage.jsx";
+import { productsLoader } from "./loaders/productsLoader.js";
+import { contactAction } from "./actions/contactAction.js";
+import { ToastContainer, Bounce } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import ProductDetail from "./components/ProductDetail.jsx";
 
 const routeDefinitions = createRoutesFromElements(
   <Route path="/" element={<App />} errorElement={<ErrorPage />}>
-    <Route index element={<Home />} />
-    <Route path="/home" element={<Home />} />
+    {/* loader -> used to fetch data from BE before rendering a component */}
+    {/* help improve performance and ensure that the page has all necessary data before it loads */}
+    {/* loaders run once because they execute at the route level before component rendering begins, not during the React component lifecycle */}
+    <Route index element={<Home />} loader={productsLoader} />
+    <Route path="/home" element={<Home />} loader={productsLoader} />
     <Route path="/about" element={<About />} />
-    <Route path="/contact" element={<Contact />} />
+    {/* use action to submit data */}
+    <Route path="/contact" element={<Contact />} action={contactAction} />
     <Route path="/login" element={<Login />} />
     <Route path="/cart" element={<Cart />} />
+    <Route path="/products/:productId" element={<ProductDetail />} />
   </Route>
 );
 
@@ -72,5 +82,15 @@ createRoot(document.getElementById("root")).render(
         Note: Only affects development, not production builds */}
     {/* <App /> */}
     <RouterProvider router={appRouter} />
+    <ToastContainer
+      position="top-center"
+      autoClose={3000}
+      hideProgressBar={false}
+      newestOnTop={false}
+      draggable
+      pauseOnHover
+      theme={localStorage.getItem("theme") === "dark" ? "dark" : "light"}
+      transition={Bounce}
+    />
   </StrictMode>
 );
