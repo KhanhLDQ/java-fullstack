@@ -1,0 +1,11 @@
+### request scope
+GET http://localhost:8080/api/v1/scopes/request-scope
+
+### session scope
+GET http://localhost:8080/api/v1/scopes/session-scope
+
+### application scope
+GET http://localhost:8080/api/v1/scopes/application-scope
+
+### test scope
+GET http://localhost:8080/api/v1/scopes/test
