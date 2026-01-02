@@ -50,7 +50,7 @@ public class ContactControllerTest extends AbstractIntegrationTest {
         var request = ContactRequest.builder()
                 .name("Khanh Le")
                 .email("khanh.le@example.com")
-                .mobileNumber("+1234567890")
+                .mobileNumber("1234567890")
                 .message("This is a test message for the contact form!")
                 .build();
 
@@ -65,7 +65,7 @@ public class ContactControllerTest extends AbstractIntegrationTest {
         .then()
             .log()
                 .all()
-            .statusCode(200)
+            .statusCode(201)
             .body(equalTo("Request processed successfully"));
     }
 }

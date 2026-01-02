@@ -37,3 +37,24 @@ logging:
 
 cors:
   allowed-origins: ${CORS_ALLOWED_ORIGINS:http://localhost:5173}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+    configprops:
+      show-values: always
+  info:
+    env:
+      enabled: true
+info:
+  app:
+    name: ${spring.application.name}
+    description: Backend for EazyStore E-commerce Application
+    version: 1.0.0
+    contact:
+      email: khanh@eazystore.be.com

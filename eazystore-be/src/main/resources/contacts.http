@@ -5,6 +5,28 @@ Content-Type: application/json
 {
   "name": "Khanh Le",
   "email": "khanh.le@example.com",
-  "mobileNumber": "+1234567890",
+  "mobileNumber": "1234567890",
   "message": "This is a test message for the contact form!"
+}
+
+### save contact - invalid email format
+POST http://localhost:8080/api/v1/contacts
+Content-Type: application/json
+
+{
+  "name": "Khanh Le",
+  "email": "invalid-email",
+  "mobileNumber": "1234567890",
+  "message": "This is a test message for the contact form!"
+}
+
+### save contact - invalid multiple fields
+POST http://localhost:8080/api/v1/contacts
+Content-Type: application/json
+
+{
+  "name": "Test",
+  "email": "invalid-email",
+  "mobileNumber": "+1234567890",
+  "message": "!"
 }

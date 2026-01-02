@@ -17,14 +17,8 @@ public class ContactServiceImpl implements IContactService {
 
     @Override
     public boolean save(ContactRequest request) {
-        try {
-            contactRepository.save(contactMapper.toContact(request));
+        contactRepository.save(contactMapper.toContact(request));
 
-            return true;
-        } catch (Exception ex) {
-            log.error("Failed to save contact: {}", ex.getMessage(), ex);
-
-            return false;
-        }
+        return true;
     }
 }

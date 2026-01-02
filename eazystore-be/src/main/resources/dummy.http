@@ -1,0 +1,54 @@
+### create user
+POST http://localhost:8080/api/v1/dummy/create-user
+Content-Type: application/json
+
+{
+  "name": "Tom",
+  "email": "tom@example.com",
+  "mobileNumber": "+0987654321"
+}
+
+### search user
+GET http://localhost:8080/api/v1/dummy/search?name=KhanhLe
+
+### search user with invalid param
+GET http://localhost:8080/api/v1/dummy/search?name=test
+
+### search user without query param
+GET http://localhost:8080/api/v1/dummy/search
+
+### search user with multiple params
+GET http://localhost:8080/api/v1/dummy/multiple-search?firstName=Tom&lastName=Map
+
+### search user with map
+GET http://localhost:8080/api/v1/dummy/search-with-map?firstName=May&lastName=Phan
+
+### search user details
+GET http://localhost:8080/api/v1/dummy/users/12
+
+### search user post details
+GET http://localhost:8080/api/v1/dummy/users/10/posts/5
+
+### read headers
+GET http://localhost:8080/api/v1/dummy/headers
+User-Agent: AppRuntime/1.0
+User-Location: DaNang
+
+### read map headers
+GET http://localhost:8080/api/v1/dummy/map-headers
+User-Agent: AppRuntime/2.0
+
+### read http headers
+GET http://localhost:8080/api/v1/dummy/http-headers
+User-Location: DaNang
+
+### request entity
+POST http://localhost:8080/api/v1/dummy/request-entity
+Content-Type: application/json
+User-Agent: AppRuntime/3.0
+
+{
+  "name": "Tom",
+  "email": "tom@example.com",
+  "mobileNumber": "+0987654321"
+}

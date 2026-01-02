@@ -1,5 +1,6 @@
 package org.tommap.eazystorebe.service;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -30,6 +31,7 @@ public class ContactServiceImplTest {
     ContactServiceImpl contactService;
 
     @Test
+    @Disabled("disabled - remove try|catch in service - now handled by global exception handler")
     void testSave_WhenThrowsException_ShouldReturnFalse() {
         //arrange
         var request = ContactRequest.builder()
