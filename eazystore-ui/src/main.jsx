@@ -19,6 +19,7 @@ import { contactAction } from "./actions/contactAction.js";
 import { ToastContainer, Bounce } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import ProductDetail from "./components/ProductDetail.jsx";
+import { CartProvider } from "./store/cart-context.jsx";
 
 const routeDefinitions = createRoutesFromElements(
   <Route path="/" element={<App />} errorElement={<ErrorPage />}>
@@ -81,7 +82,9 @@ createRoot(document.getElementById("root")).render(
         - Checking for unsafe lifecycles
         Note: Only affects development, not production builds */}
     {/* <App /> */}
-    <RouterProvider router={appRouter} />
+    <CartProvider>
+      <RouterProvider router={appRouter} />
+    </CartProvider>
     <ToastContainer
       position="top-center"
       autoClose={3000}
