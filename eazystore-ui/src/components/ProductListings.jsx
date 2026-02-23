@@ -24,7 +24,7 @@ export default function ProductListings({ products }) {
     let filteredProducts = products.filter(
       (product) =>
         product.name.toLowerCase().includes(searchText.toLowerCase()) ||
-        product.description.toLowerCase().includes(searchText.toLowerCase())
+        product.description.toLowerCase().includes(searchText.toLowerCase()),
     );
 
     return filteredProducts.slice().sort((a, b) => {
@@ -72,7 +72,7 @@ export default function ProductListings({ products }) {
             <ProductCard key={product.productId} product={product} />
           ))
         ) : (
-          <p className="text-center font-primary font-bold text-lg text-primary col-span-full">
+          <p className="text-center font-primary font-bold text-lg text-primary dark:text-light">
             No Products Found!
           </p>
         )}

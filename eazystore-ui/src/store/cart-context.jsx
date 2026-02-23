@@ -30,21 +30,21 @@ const cartReducer = (prevCart, action) => {
     case ADD_TO_CART:
       const { product, quantity } = action.payload;
       const existingItem = prevCart.find(
-        (item) => item.productId === product.productId
+        (item) => item.productId === product.productId,
       );
 
       if (existingItem) {
         return prevCart.map((item) =>
           item.productId === product.productId
             ? { ...item, quantity: item.quantity + quantity }
-            : item
+            : item,
         );
       }
 
       return [...prevCart, { ...product, quantity }];
     case REMOVE_FROM_CART:
       return prevCart.filter(
-        (item) => item.productId !== action.payload.productId
+        (item) => item.productId !== action.payload.productId,
       );
     case CLEAR_CART:
       return [];
