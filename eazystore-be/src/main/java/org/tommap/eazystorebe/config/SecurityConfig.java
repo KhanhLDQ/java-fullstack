@@ -7,15 +7,14 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.ProviderManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.authentication.password.CompromisedPasswordChecker;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.password.HaveIBeenPwnedRestApiPasswordChecker;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -58,32 +57,37 @@ public class SecurityConfig {
 
     @Bean
     public AuthenticationManager authenticationManager(
-        UserDetailsService userDetailsService,
+//        UserDetailsService userDetailsService,
         PasswordEncoder passwordEncoder
     ) {
       var daoAuthenticationProvider = new DaoAuthenticationProvider();
-      daoAuthenticationProvider.setUserDetailsService(userDetailsService);
+//      daoAuthenticationProvider.setUserDetailsService(userDetailsService);
       daoAuthenticationProvider.setPasswordEncoder(passwordEncoder);
 
       return new ProviderManager(daoAuthenticationProvider);
     }
 
     @Bean
-    public UserDetailsService userDetailsService() {
-        var khanh = User.builder()
-                .username("khanh")
-                .password("$2a$12$Jlxg.w.C2UUmC5y4t5MgRO2Mx1xUuSgbs8ti2GcmrfmZPKU/ETGyC") //123456
-                .roles("USER")
-                .build();
-
-        var tom = User.builder()
-                .username("tom")
-                .password("$2a$12$iCEUG0Iqp2.0fK2yr76MduSqV99mtaf5kGaTVITKFxuTSiMhhCSQK") //654321
-                .roles("USER", "ADMIN")
-                .build();
-
-        return new InMemoryUserDetailsManager(khanh, tom);
+    public CompromisedPasswordChecker compromisedPasswordChecker() { //part of Spring Security version 6.3
+        return new HaveIBeenPwnedRestApiPasswordChecker(); //rest API call to 3rd party which is going to maintain all the weak|compromised passwords
     }
+
+//    @Bean
+//    public UserDetailsService userDetailsService() {
+//        var khanh = User.builder()
+//                .username("khanh")
+//                .password("$2a$12$Jlxg.w.C2UUmC5y4t5MgRO2Mx1xUuSgbs8ti2GcmrfmZPKU/ETGyC") //123456
+//                .roles("USER")
+//                .build();
+//
+//        var tom = User.builder()
+//                .username("tom")
+//                .password("$2a$12$iCEUG0Iqp2.0fK2yr76MduSqV99mtaf5kGaTVITKFxuTSiMhhCSQK") //654321
+//                .roles("USER", "ADMIN")
+//                .build();
+//
+//        return new InMemoryUserDetailsManager(khanh, tom);
+//    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {

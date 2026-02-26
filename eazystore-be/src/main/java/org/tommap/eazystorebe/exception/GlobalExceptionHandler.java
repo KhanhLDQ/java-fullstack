@@ -65,4 +65,18 @@ public class GlobalExceptionHandler {
 
         return ResponseEntity.badRequest().body(errors);
     }
+
+    @ExceptionHandler(CustomerAlreadyExistsException.class)
+    public ResponseEntity<Map<String, String>> handleCustomerAlreadyExistsException(CustomerAlreadyExistsException ex) {
+        log.error("An exception occurred due to: {}", ex.getMessage(), ex);
+
+        return ResponseEntity.badRequest().body(ex.getErrors());
+    }
+
+    @ExceptionHandler(PasswordCompromisedException.class)
+    public ResponseEntity<Map<String, String>> handlePasswordCompromisedException(PasswordCompromisedException ex) {
+        log.error("An exception occurred due to: {}", ex.getMessage(), ex);
+
+        return ResponseEntity.badRequest().body(ex.getErrors());
+    }
 }

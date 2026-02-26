@@ -9,9 +9,6 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,9 +17,8 @@ import org.tommap.eazystorebe.model.dto.UserDto;
 import org.tommap.eazystorebe.model.request.LoginRequest;
 import org.tommap.eazystorebe.model.request.RegisterRequest;
 import org.tommap.eazystorebe.model.response.LoginResponse;
+import org.tommap.eazystorebe.service.ICustomerService;
 import org.tommap.eazystorebe.util.JwtUtils;
-
-import java.util.List;
 
 import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
@@ -34,8 +30,10 @@ import static org.springframework.http.HttpStatus.UNAUTHORIZED;
 public class AuthController {
   private final AuthenticationManager authenticationManager;
   private final JwtUtils jwtUtils;
-  private final InMemoryUserDetailsManager inMemoryUserDetailsManager;
-  private final PasswordEncoder passwordEncoder;
+  private final ICustomerService customerService;
+
+//  private final InMemoryUserDetailsManager inMemoryUserDetailsManager;
+//  private final PasswordEncoder passwordEncoder;
 
   @PostMapping("/login")
   public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest request) {
@@ -60,12 +58,14 @@ public class AuthController {
 
   @PostMapping("/register")
   public ResponseEntity<String> register(@RequestBody @Valid RegisterRequest request) {
-    var user = User.builder()
-        .username(request.getEmail())
-        .password(passwordEncoder.encode(request.getPassword()))
-        .roles("USER")
-        .build();
-    inMemoryUserDetailsManager.createUser(user);
+//    var user = User.builder()
+//        .username(request.getEmail())
+//        .password(passwordEncoder.encode(request.getPassword()))
+//        .roles("USER")
+//        .build();
+//    inMemoryUserDetailsManager.createUser(user);
+
+    customerService.register(request);
 
     return ResponseEntity
         .status(CREATED)
