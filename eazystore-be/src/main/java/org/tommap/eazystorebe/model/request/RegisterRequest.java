@@ -7,6 +7,7 @@ import jakarta.validation.constraints.Size;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.tommap.eazystorebe.validation.StrongPassword;
 
 @Getter @Setter
 @NoArgsConstructor
@@ -24,6 +25,6 @@ public class RegisterRequest {
   private String mobileNumber;
 
   @NotBlank(message = "Password is required")
-  @Size(min = 8, max = 20, message = "Password length must be between 8 and 20 characters")
+  @StrongPassword
   private String password;
 }
