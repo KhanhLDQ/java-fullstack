@@ -30,6 +30,8 @@ import AdminOrders from "./components/admin/AdminOrders.jsx";
 import Messages from "./components/admin/Messages.jsx";
 import Register from "./components/Register.jsx";
 import { registerAction } from "./actions/registerAction.js";
+import { profileLoader } from "./loaders/profileLoader.js";
+import { profileAction } from "./actions/profileAction.js";
 
 const routeDefinitions = createRoutesFromElements(
   <Route path="/" element={<App />} errorElement={<ErrorPage />}>
@@ -47,7 +49,12 @@ const routeDefinitions = createRoutesFromElements(
     <Route path="/products/:productId" element={<ProductDetail />} />
     <Route element={<ProtectedRoute />}>
       <Route path="/checkout" element={<CheckoutForm />} />
-      <Route path="/profile" element={<Profile />} />
+      <Route
+        path="/profile"
+        element={<Profile />}
+        loader={profileLoader}
+        action={profileAction}
+      />
       <Route path="/orders" element={<Orders />} />
       <Route path="/admin/orders" element={<AdminOrders />} />
       <Route path="/admin/messages" element={<Messages />} />
